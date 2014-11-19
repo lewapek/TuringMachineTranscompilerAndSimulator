@@ -28,7 +28,7 @@ if test:
     f.close()
 
     test_cases = p.parse(test_cases)
-    length = max(len(t[0]) for t in test_cases) + 1
+    length = max(len(str(t)) for t in test_cases) + 1
     for t in test_cases:
         if t[0] == '':
             t[0] = 'BLANK'
@@ -36,7 +36,7 @@ if test:
         process = Popen(cmd.split(' '), stdout=PIPE)
         process.communicate()
         return_value = process.wait()
-        print('\n' + ('{0: <' + str(length) + '}').format(t[0] + ' '), end='')
+        print('\n' + ('{0: <' + str(length) + '}').format(str(t) + ' '), end='')
         if t[1] == return_value:
             print('ok')
         else:
