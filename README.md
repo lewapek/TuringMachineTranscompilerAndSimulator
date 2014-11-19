@@ -34,7 +34,7 @@ Description should have following format:
 
 Machine name
 
-/* comment - optional */
+/\* comment - optional \*/
 
 input alphabet separated by ' '
 
