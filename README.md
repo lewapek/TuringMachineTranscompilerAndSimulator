@@ -30,6 +30,8 @@ To create Turing machine simulator run:
 
 Machine description can be placed in text file or you can specify it after running main.py.
 
+Machine name will be output filename.
+
 Description should have following format:
 
 Machine name
