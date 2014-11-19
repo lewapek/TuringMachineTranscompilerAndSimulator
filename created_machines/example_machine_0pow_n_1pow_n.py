@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
 # Auto generated file
-# 2014-11-19 17:12:07.399710
+# 2014-11-19 18:05:16.998403
 # Accepts language L={0^n1^n, n-natural (possible 0)}
 # q_0 - looking for '0', when found, writes blank ang looking for '1'), accepts empty tape, when found '#', checking by q_c
 # q_1 - looking for '1' (skipping rest), when not found, reject
 # q_c - checking, whether there is possibility to go along all tape finding only '#', if yes, then accept
 # q_b - going back
 # 
-import sys, os
+import sys
+import os
 
 sys.path.append('..')
 
@@ -36,9 +37,11 @@ if test:
     f.close()
 
     test_cases = p.parse(test_cases)
+    p.check(test_cases)
     for t in test_cases:
         if t[0] == '':
             t[0] = 'BLANK'
+        length = t.max(axis=0) + 1
         cmd = 'python3 ' + os.path.realpath(__file__) + ' -q -x ' + t[0]
         process = Popen(cmd.split(' '), stdout=PIPE)
         process.communicate()

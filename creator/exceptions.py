@@ -20,3 +20,7 @@ class IncorrectTransitionError(Exception):
 
 class TapeAlphabetNotSubsetOfWorkingAlphabet(Exception):
     pass
+
+
+class IncorrectTestCaseError(Exception):
+    pass
