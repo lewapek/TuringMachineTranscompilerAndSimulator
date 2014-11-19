@@ -1,4 +1,5 @@
-import sys, os
+import sys
+import os
 
 sys.path.append('..')
 
@@ -27,6 +28,7 @@ if test:
     f.close()
 
     test_cases = p.parse(test_cases)
+    length = max(len(t[0]) for t in test_cases) + 1
     for t in test_cases:
         if t[0] == '':
             t[0] = 'BLANK'
@@ -34,7 +36,7 @@ if test:
         process = Popen(cmd.split(' '), stdout=PIPE)
         process.communicate()
         return_value = process.wait()
-        print('\n' + t[0] + ' ', end='')
+        print('\n' + ('{0: <' + str(length) + '}').format(t[0] + ' '), end='')
         if t[1] == return_value:
             print('ok')
         else:

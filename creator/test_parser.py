@@ -12,11 +12,14 @@ def parse(content):
     content = content.split('\n')
     for c in content:
         splitted = c.split(' ')
-        result.append([splitted[0], 0 if splitted[1] in true_signs else 1])
+
+        if splitted[1] in true_signs:
+            ret_val = 0
+        elif splitted[1] in false_signs:
+            ret_val = 1
+        else:
+            raise IncorrectTestCaseError
+
+        result.append([splitted[0], ret_val])
     return result
 
-
-def check(test_cases):
-    for t in test_cases:
-        if t[1] not in true_signs + false_signs:
-            raise IncorrectTestCaseError

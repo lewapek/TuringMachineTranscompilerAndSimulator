@@ -53,6 +53,10 @@ There is possibility to write tests for your machine. Test cases should be place
 Test file should contain n lines (each representing single test case).
 Each test case is input_word and bool_value
 bool_value is one of ('Y', 'y', 'A', 'a', '+') in case machine should accept given word or one of ('N', 'n', 'R', 'r', '-') in case machine should reject given word.
+To run test:
+    python3 machine_filename --test test_file
+For example:
+    python3 example_machine_0pow_n_1pow_n.py --test ../example.test
 
 
 Good luck on TOiZO :)

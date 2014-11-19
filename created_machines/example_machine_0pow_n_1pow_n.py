@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # Auto generated file
-# 2014-11-19 18:05:16.998403
+# 2014-11-19 18:23:04.857845
 # Accepts language L={0^n1^n, n-natural (possible 0)}
 # q_0 - looking for '0', when found, writes blank ang looking for '1'), accepts empty tape, when found '#', checking by q_c
 # q_1 - looking for '1' (skipping rest), when not found, reject
@@ -37,16 +37,15 @@ if test:
     f.close()
 
     test_cases = p.parse(test_cases)
-    p.check(test_cases)
+    length = max(len(t[0]) for t in test_cases) + 1
     for t in test_cases:
         if t[0] == '':
             t[0] = 'BLANK'
-        length = t.max(axis=0) + 1
         cmd = 'python3 ' + os.path.realpath(__file__) + ' -q -x ' + t[0]
         process = Popen(cmd.split(' '), stdout=PIPE)
         process.communicate()
         return_value = process.wait()
-        print('\n' + t[0] + ' ', end='')
+        print('\n' + ('{0: <' + str(length) + '}').format(t[0] + ' '), end='')
         if t[1] == return_value:
             print('ok')
         else:
