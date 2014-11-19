@@ -1,5 +1,7 @@
 TuringMachineSimulatorCreator by lewap
 
+Machine description to python3 program transcompiler.
+
 
 
 Given a Turing machine description creates python3 file which simulates machine.
