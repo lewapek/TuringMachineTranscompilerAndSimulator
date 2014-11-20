@@ -22,6 +22,7 @@ def parse(content):
     content = re.sub(description_regex, '', content)
 
     content = re.sub(re.compile(r'blank'), blank, content)
+    content = re.sub(re.compile(r'BLANK'), blank, content)
 
     lines = content.splitlines()
     [lines.remove(i) for i in lines if i == '']

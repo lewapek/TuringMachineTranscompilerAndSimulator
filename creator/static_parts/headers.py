@@ -29,6 +29,10 @@ if test:
 
     test_cases = p.parse(test_cases)
     length = max(len(str(t)) for t in test_cases) + 1
+
+    ok, failed = 0, 0
+    total = len(test_cases)
+
     for t in test_cases:
         if t[0] == '':
             t[0] = 'BLANK'
@@ -38,9 +42,13 @@ if test:
         return_value = process.wait()
         print('\n' + ('{0: <' + str(length) + '}').format(str(t) + ' '), end='')
         if t[1] == return_value:
+            ok += 1
             print('ok')
         else:
+            failed += 1
             print('FAILED')
+
+    print('\nOK: ' + str(ok) + '/' + str(total) + ', FAILED: ' + str(failed) + '/' + str(total))
 
     exit(0)
 

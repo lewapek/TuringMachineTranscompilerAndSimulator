@@ -70,7 +70,7 @@ def create_file(path, parsed_content):
                indentation + "x = input()\n" \
                "else:\n" + \
                indentation + "x = args.x\n" + \
-               indentation + "if x == 'BLANK':\n" + \
+               indentation + "if x == 'BLANK' or x == 'blank':\n" + \
                2 * indentation + "x = '" + p.blank + "'\n" \
                "\n"
 
