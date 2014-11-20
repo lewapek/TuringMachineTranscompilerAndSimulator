@@ -19,6 +19,8 @@ command_line_parser.add_argument('--test', dest='test', default=None, required=F
                                  help='Test mode. Requires file with test cases.')
 args = command_line_parser.parse_args()
 
+accept_string = 'yes'
+reject_string = 'no'
 trace = args.trace
 quiet = args.quiet_mode
 test = args.test
@@ -28,7 +30,7 @@ if test:
     f.close()
 
     test_cases = p.parse(test_cases)
-    length = max(len(str(t)) for t in test_cases) + 1
+    length = max(len(t[0]) for t in test_cases) + max(len(accept_string), len(reject_string)) + 5
 
     ok, failed = 0, 0
     total = len(test_cases)
@@ -40,7 +42,8 @@ if test:
         process = Popen(cmd.split(' '), stdout=PIPE)
         process.communicate()
         return_value = process.wait()
-        print('\n' + ('{0: <' + str(length) + '}').format(str(t) + ' '), end='')
+        test_case_string = '[' + t[0] + ', ' + (accept_string if t[1] == 0 else reject_string) + '] '
+        print('\n' + ('{0: <' + str(length) + '}').format(test_case_string), end='')
         if t[1] == return_value:
             ok += 1
             print('ok')
