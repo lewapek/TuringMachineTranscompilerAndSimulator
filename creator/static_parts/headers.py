@@ -1,6 +1,7 @@
 import sys
 import os
 
+sys.path.append('.')
 sys.path.append('..')
 
 from creator.static_parts.functions import *
