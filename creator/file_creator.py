@@ -8,6 +8,10 @@ __author__ = 'lewap'
 indentation = '    '
 headers_file = 'creator/static_parts/headers.py'
 
+tape_left_extension = 2 * indentation + "tape.insert(0, '" + p.blank + "')\n" + \
+                      2 * indentation + "actual_state_and_pos[1] += 1\n"
+tape_right_extension = 2 * indentation + "tape.append('" + p.blank + "')\n"
+
 
 def create_file(path, parsed_content):
     name = parsed_content[0]
@@ -36,12 +40,6 @@ def create_file(path, parsed_content):
     for st in states_and_transitions:
         content += "\n@information_wrapper(trace, quiet)\n" \
                    "def " + st[0] + "(tape, position):\n"
-        content += indentation + "if position < 0:\n" + \
-                   2 * indentation + "tape.insert(0, '" + p.blank + "')\n" + \
-                   2 * indentation + "position = 0\n" + \
-                   indentation + "elif position >= len(tape):\n" + \
-                   2 * indentation + "tape.append('" + p.blank + "')\n" \
-                   "\n"
 
         transitions = st[1]
         i = 0
@@ -49,16 +47,12 @@ def create_file(path, parsed_content):
             content += indentation + ("if" if i == 0 else "elif") + " tape[position] == working_alphabet[" + str(i) + "]:\n"
             if len(t) == 1:
                 if t[0] in p.accept:
-                    content += 2 * indentation + "if not quiet:\n" + \
-                               3 * indentation + "print('Accepted!')\n" + \
-                               2 * indentation + "accept()\n"
+                    content += 2 * indentation + "return accept()\n"
                 else:
-                    content += 2 * indentation + "if not quiet:\n" + \
-                               3 * indentation + "print('Rejected!')\n" + \
-                               2 * indentation + "reject()\n"
+                    content += 2 * indentation + "return reject()\n"
             else:
                 content += 2 * indentation + "tape[position] = '" + t[0] + "'\n"
-                content += 2 * indentation + t[1] + "(tape, position " + ("+ 1" if t[2] in p.move_right else "-1") + ")\n"
+                content += 2 * indentation + "return " + t[1] + ", position " + ("+ 1" if t[2] in p.move_right else "- 1") + "\n"
             i += 1
         content += indentation + "else:\n"
         content += 2 * indentation + "raise NoSuchSymbolError\n"
@@ -74,7 +68,32 @@ def create_file(path, parsed_content):
                2 * indentation + "x = '" + p.blank + "'\n" \
                "\n"
 
-    content += initial_state + "(list('" + p.blank + "') + list(x) + list('" + p.blank + "'), 1)"
+    content += "actual_state_and_pos = (" + initial_state + ", 1)\n" \
+               "tape = list('" + p.blank + "') + list(x) + list('" + p.blank + "')\n" \
+               "for i in range(max_steps):\n" + \
+               indentation + "if actual_state_and_pos == accept():\n" + \
+               2 * indentation + "if not quiet:\n" + \
+               3 * indentation + "print('Accepted in ' + str(i) + ' steps!')\n" + \
+               2 * indentation + "exit(accept())\n" + \
+               indentation + "elif actual_state_and_pos == reject():\n" + \
+               2 * indentation + "if not quiet:\n" + \
+               3 * indentation + "print('Rejected in ' + str(i) + ' steps!')\n" + \
+               2 * indentation + "exit(reject())\n" + \
+               "\n" + \
+               indentation + "if actual_state_and_pos[1] < 0:\n" + tape_left_extension + \
+               indentation + "elif actual_state_and_pos[1] >= len(tape):\n" + tape_right_extension + \
+               "\n" + \
+               indentation + "new_state_and_pos = actual_state_and_pos[0](tape, actual_state_and_pos[1])\n" + \
+               "\n" + \
+               indentation + "if actual_state_and_pos[1] <= 1 and tape[0] != '" + p.blank + "':\n" + tape_left_extension + \
+               indentation + "elif actual_state_and_pos[1] >= len(tape) - 2 and tape[-1] != '" + p.blank + "':\n" + tape_right_extension + \
+               "\n" + \
+               indentation + "actual_state_and_pos = new_state_and_pos\n"
+
+    content += "\n" \
+               "if not quiet:\n" + \
+               indentation + "print('Rejected due to max steps (' + str(max_steps) + ') overflow.')\n" \
+               "exit(reject_max_steps_exceeded())\n"
     f.write(content)
 
     f.close()

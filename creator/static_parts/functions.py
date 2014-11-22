@@ -18,15 +18,19 @@ def information_wrapper(trace, quiet):
 
                 if trace is not None:
                     input()
-            state_function(tape, position)
+            return state_function(tape, position)
 
         return decorated_state_function
     return wrapper
 
 
 def accept():
-    exit(0)
+    return 0
 
 
 def reject():
-    exit(1)
+    return 1
+
+
+def reject_max_steps_exceeded():
+    return 2
