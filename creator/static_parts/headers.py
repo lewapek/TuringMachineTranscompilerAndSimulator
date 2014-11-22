@@ -20,7 +20,8 @@ command_line_parser.add_argument('-x', dest='x', default=None, required=False, h
 command_line_parser.add_argument('-q', '--quiet', dest='quiet_mode', action='store_true', default=None, required=False)
 command_line_parser.add_argument('--test', dest='test', default=None, required=False,
                                  help='Test mode. Requires file with test cases.')
-command_line_parser.add_argument('-s', '--steps', dest='max_steps', default=None, required=False)
+command_line_parser.add_argument('-s', '--steps', dest='max_steps', default=None, required=False,
+                                 help='Max steps (' + str(max_steps) + ') by default')
 args = command_line_parser.parse_args()
 
 accept_string = 'yes'

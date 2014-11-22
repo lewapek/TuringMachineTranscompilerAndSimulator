@@ -38,7 +38,7 @@ Description should have following format:
 
 Machine name
 
-/\* comment - optional \*/
+/* comment - optional */
 
 input alphabet separated by ' '
 
@@ -78,17 +78,21 @@ After successful main.py execution file similar to your machine name appeared in
 
 To run your machine type go to 'OUTPUT_PATH' and type:
 
-    python3 machine_filename [-h] [-t] [-x X] [-q] [--test TEST]
+    python3 machine_filename [-h] [-t] [-x X] [-q] [--test TEST] [-s MAX_STEPS]
 
-        -h, --help   show this help message and exit
+      -h, --help            show this help message and exit
 
-        -t, --trace  Enables trace mode
+      -t, --trace           Enables trace mode
 
-        -x X         Input word
+      -x X                  Input word
 
-        -q, --quiet
+      -q, --quiet
 
-        --test TEST  Test mode. Requires file with test cases.
+      --test TEST           Test mode. Requires file with test cases.
+
+      -s MAX_STEPS, --steps MAX_STEPS
+
+                            Max steps (10000) by default
 
 
 
@@ -123,7 +127,5 @@ For example:
 
 
 
-
-Good luck on TOiZO :)
 
 lewap

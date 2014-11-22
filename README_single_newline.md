@@ -38,12 +38,14 @@ Example description is placed in file 'example.description'.
 MACHINE RUNNING PROCESS
 After successful main.py execution file similar to your machine name appeared in 'OUTPUT_PATH' (created_machines by default).
 To run your machine type go to 'OUTPUT_PATH' and type:
-    python3 machine_filename [-h] [-t] [-x X] [-q] [--test TEST]
-        -h, --help   show this help message and exit
-        -t, --trace  Enables trace mode
-        -x X         Input word
-        -q, --quiet
-        --test TEST  Test mode. Requires file with test cases.
+    python3 machine_filename [-h] [-t] [-x X] [-q] [--test TEST] [-s MAX_STEPS]
+      -h, --help            show this help message and exit
+      -t, --trace           Enables trace mode
+      -x X                  Input word
+      -q, --quiet
+      --test TEST           Test mode. Requires file with test cases.
+      -s MAX_STEPS, --steps MAX_STEPS
+                            Max steps (10000) by default
 
 To run example machine:
     python3 example_machine_0pow_n_1pow_n.py
@@ -61,5 +63,4 @@ For example:
     python3 example_machine_0pow_n_1pow_n.py --test ../example.test
 
 
-Good luck on TOiZO :)
 lewap
