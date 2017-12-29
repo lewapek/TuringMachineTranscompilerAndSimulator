@@ -1,105 +1,33 @@
-TuringMachineSimulatorCreator by lewap
+# Turing machine transcompiler and simulator
+*Machine description to python3 program transcompiler.*
 
-Machine description to python3 program transcompiler.
+This project enables you to provide Turing machine using DSL (example below) and converts it to python3 program. Having the generated program you can freely run it to check if it accepts input words. You can also write some tests and quickly check how many of them passed or failed (due to rejection or exceeding configurable max-steps parameter).
 
+The project was created in 2014 as a tool supporting learning for colloquium at AGH University of Science and Technology (subject: 'Computation and Complexity Theory').
 
-
-Given a Turing machine description creates python3 file which simulates machine.
-
-Only machines containing single tape (infinite at both sides) are allowed.
-
-
-
-MACHINE CREATION PROCESS
-
-To create Turing machine simulator run:
-
-    python3 main.py [-h] [-f INPUT_FILE] [-o OUTPUT_PATH]
-
-        -h, --help            show this help message and exit
-
-        -f INPUT_FILE, --file INPUT_FILE
-
-                              File containing machine description.
-
-        -o OUTPUT_PATH, --output OUTPUT_PATH
-
-                              Path to store output file inside.
+Machines contain single tape, infinite at both sides.  
+Working alphabet is alphabet for input words.  
+Tape alphabet is alphabet consisting of characters which can be written on tape (working alphabet + optional additional characters).
 
 
+## Usage
+1. Create deterministic Turing machine in the following form:
 
 
+    machineName
+    /*
+    multiline comment
+    */
+    Tape alphabet split by space
+    Initial state
+    Machine description in the form of table, where 1st column consist of state names and 1st row consist of working alphabet.
+    Columns are split by ;
+    Each row consists of 3-element tuple with character, state name and transition which tells the machine to write the character on the tape, switch to the state and move 1 character left or rigth.
 
-Machine description can be placed in text file or you can specify it after running main.py.
+All elements should be placed on single line except from multiline comment and machine description.
 
-Machine name will be output filename.
-
-Description should have following format:
-
-Machine name
-
-/* comment - optional */
-
-input alphabet separated by ' '
-
-working alphabet separated by ' ' (except blank)
-
-initial state name
-
-state_name; transition1; transition2; transition3; ...
-
-another_state_name; transition4; transition5; transition6;
-
-
-
-where transitions appear in order of your working alphabet (last transition for blank)
-
-transition format is one of:
-
-new_sing_from_working_alphabet new_state move
-
-    move = move_left | move_right
-
-    move_left = 'l' | '<'
-
-    move_right = 'r' | '>'
-
-accept | a | y | yes | reject, r, no, n
-
-
-
-Example description is placed in file 'example.description'.
-
-
-
-MACHINE RUNNING PROCESS
-
-After successful main.py execution file similar to your machine name appeared in 'OUTPUT_PATH' (created_machines by default).
-
-To run your machine type go to 'OUTPUT_PATH' and type:
-
-    python3 machine_filename [-h] [-t] [-x X] [-q] [--test TEST] [-s MAX_STEPS]
-
-      -h, --help            show this help message and exit
-
-      -t, --trace           Enables trace mode
-
-      -x X                  Input word
-
-      -q, --quiet
-
-      --test TEST           Test mode. Requires file with test cases.
-
-      -s MAX_STEPS, --steps MAX_STEPS
-
-                            Max steps (10000) by default
-
-
-
-To run example machine:
-
-    python3 example_machine_0pow_n_1pow_n.py
-
+## Example
+In this next section you will see practical example how to write sample Turing machine, transcompile it to python3 program, run, trace and test.
 
 
 Empty input word is represented by 'BLANK' string.
@@ -123,9 +51,3 @@ To run test:
 For example:
 
     python3 example_machine_0pow_n_1pow_n.py --test ../example.test
-
-
-
-
-
-lewap
