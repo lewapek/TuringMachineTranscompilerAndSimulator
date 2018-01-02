@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-__author__ = 'lewap'
 
 
 class IncorrectInputAlphabetError(Exception):
@@ -15,7 +14,7 @@ class IncorrectTransitionError(Exception):
         self.val = val
 
     def __str__(self):
-        return 'Mistake in transition ' + str(self.val) + '.'
+        return "Mistake in transition " + str(self.val) + "."
 
 
 class TapeAlphabetNotSubsetOfWorkingAlphabet(Exception):

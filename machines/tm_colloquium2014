@@ -1,0 +1,19 @@
+tm colloquium2014
+/* L={(0^(2n)#)^n, n in N0}, alphabet={0, 1, #}
+n=1, word=00#
+n=2, word=0000#0000#
+n=3, word=000000#000000#000000#
+... */
+0 1 #
+q0
+        ; 0         ; 1  ; #            ; *               ;
+q0      ; * qSKIP > ; no ; no           ; * q0 >          ; blank qB <
+qSKIP   ; 0 qSKIP > ; no ; # q0 >       ; no              ; no
+qB      ; 0 qB <    ; no ; # qB <       ; * qB <          ; blank qC >
+qC      ; 0 qB0 <   ; no ; # qC >       ; * qC >          ; blank qLEN <
+qB0     ; 0 qB0 <   ; no ; # qB0 <      ; * qB0 <         ; blank q0 >
+qLEN    ; no        ; no ; # qLEN <     ; * qLEN <        ; blank qCOUNT1 >
+qCOUNT1 ; no        ; no ; no           ; blank qCOUNT2 > ; yes
+qCOUNT2 ; no        ; no ; no           ; blank qR >      ; no
+qR      ; no        ; no ; # qR >       ; * qR >          ; blank qHASH <
+qHASH   ; no        ; no ; blank qLEN < ; blank qHASH <   ; no

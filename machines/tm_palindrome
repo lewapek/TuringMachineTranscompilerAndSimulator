@@ -1,0 +1,11 @@
+tm palindrome
+/* L={x | x-palindrome} */
+0 1
+qS
+   ; 0         ; 1         ;
+qS ; blank q0 >; blank q1 >; yes
+q0 ; 0 q0 >    ; 1 q0 >    ; blank qC0 <
+q1 ; 0 q1 >    ; 1 q1 >    ; blank qC1 <
+qC0; blank qB <; no        ; yes
+qC1; no        ; blank qB <; yes
+qB ; 0 qB <    ; 1 qB <    ; blank qS >

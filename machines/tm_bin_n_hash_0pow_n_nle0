@@ -1,0 +1,27 @@
+tm_bin_n_hash_0pow_n_nle0
+/*L={bin(n)#0^n: n in N0},
+bin(n) - binary representation of n, ex. bin(5) = 101, bin(0) = 0
+qDLZ - delete leading zeros
+qLHASH - going to the sign on the left to '#'
+qC - checks if the are only '#' on tape
+qBIN - if bin(n) % 2 == 1, changes 1 to 0 ( -1 ), else changes zero to # ( /2 )
+qRSUB - go to the right side of tape
+qSUB - delete one 0 by writing 'blank' instead of 0
+qDIVH, qDIV0 - divide 0^n by 2, qDIVH - write # instead of 0, qDIV0 - do not delete 0
+qB - back to left and start qDLZ
+qSTART - finds first #, goes to qCH - checks if there is only one #
+*/
+0 1
+qSTART
+       ; 0           ; 1          ; #          ;
+qSTART ; 0 qSTART >  ; 1 qSTART > ; # qCH >    ; no
+qCH    ; 0 qB <      ; 1 qB <     ; no         ; blank qB <
+qDLZ   ; blank qDLZ >; 1 qLHASH > ; # qC >     ; no
+qC     ; no          ; no         ; # qC >     ; yes
+qLHASH ; 0 qLHASH >  ; 1 qLHASH > ; # qBIN <   ; no
+qBIN   ; # qDIVH >   ; 0 qRSUB >  ; no         ; no
+qRSUB  ; 0 qRSUB >   ; no         ; # qRSUB >  ; blank qSUB <
+qSUB   ; blank qB <  ; no         ; # qSUB <   ; no
+qDIVH  ; # qDIV0 >   ; no         ; # qDIVH >  ; blank qB <
+qDIV0  ; 0 qDIVH >   ; no         ; # qDIV0 >  ; no
+qB     ; 0 qB <      ; 1 qB <     ; # qB <     ; blank qDLZ >

@@ -6,9 +6,9 @@ q_c - checking, whether there is possibility to go along all tape finding only '
 q_b - going back
 */
 0 1
-0 1 #
 q_0
-q_0; blank q_1 r; reject; # q_c r; accept
-q_1; 0 q_1 r; # q_b l; # q_1 r; reject
-q_c; reject; reject; # q_c r; accept
-q_b; 0 q_b l; reject; # q_b l; blank q_0 r
+    ; 0           ; 1       ; #       ;
+q_0 ; blank q_1 > ; reject  ; # q_c > ; accept
+q_1 ; 0 q_1 >     ; # q_b < ; # q_1 > ; reject
+q_c ; reject      ; reject  ; # q_c > ; accept
+q_b ; 0 q_b <     ; reject  ; # q_b < ; blank q_0 >

@@ -1,0 +1,12 @@
+tm_word_length_eq_3pow_n
+/*L={x: |x| = 3^n, n in N0}*/
+1
+qS1
+    ; 1       ; #       ;
+qS1 ; 1 qS2 r ; # qS1 r ; no
+qS2 ; 1 qbs l ; # qS2 r ; yes
+qb  ; 1 qb  l ; # qb  l ; blank qS1 r
+qbs ; 1 qbs l ; # qbs l ; blank q1 r
+q1  ; # q2  r ; # q1  r ; blank qb l
+q2  ; # q3  r ; # q2  r ; no
+q3  ; 1 q1  r ; # q3  r ; no

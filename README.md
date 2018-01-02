@@ -13,16 +13,17 @@ Tape alphabet is alphabet consisting of characters which can be written on tape 
 ## Usage
 1. Create deterministic Turing machine in the following form:
 
-
-    machineName
-    /*
-    multiline comment
-    */
-    Tape alphabet split by space
-    Initial state
-    Machine description in the form of table, where 1st column consist of state names and 1st row consist of working alphabet.
-    Columns are split by ;
-    Each row consists of 3-element tuple with character, state name and transition which tells the machine to write the character on the tape, switch to the state and move 1 character left or rigth.
+```
+machineName  
+/* 
+multiline comment
+*/
+Tape alphabet split by space
+Initial state
+Machine description in the form of table, where 1st column consist of state names and 1st row consist of working alphabet.
+Columns are split by ;
+Each row consists of 3-element tuple with character, state name and transition which tells the machine to write the character on the tape, switch to the state and move 1 character left or rigth.
+```
 
 All elements should be placed on single line except from multiline comment and machine description.
 
@@ -33,4 +34,4 @@ In this next section you will see practical example how to write sample Turing m
 
 ## Restrictions
 
-Languages (alphabets) can't contain blank symbol ▯, because it represents empty tape.
+Languages (alphabets) can't contain blank symbol ▯, because it represents empty tape. They also can't contain any whitespace character and ; (used to separate columns in Turing machine DSL).

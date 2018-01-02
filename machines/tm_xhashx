@@ -1,0 +1,13 @@
+tm_xhashx
+/* L={x#x}, x in {0, 1}* */
+0 1
+qS
+    ; 0           ; 1           ; #       ; *      ;
+qS  ; 0 qS >      ; 1 qS >      ; # qCH > ; no     ; no
+qC0 ; 0 qC0 >     ; 1 qC0 >     ; # q0 >  ; no     ; no
+qC1 ; 0 qC1 >     ; 1 qC1 >     ; # q1 >  ; no     ; no
+q0  ; * qB <      ; no          ; no      ; * q0 > ; no
+q1  ; no          ; * qB <      ; no      ; * q1 > ; no
+qB  ; 0 qB <      ; 1 qB <      ; # qB <  ; * qB < ; blank qC >
+qCH ; 0 qB <      ; 1 qB <      ; no      ; no     ; blank qB <
+qC  ; blank qC0 > ; blank qC1 > ; # qC >  ; * qC > ; yes

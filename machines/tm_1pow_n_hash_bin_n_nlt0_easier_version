@@ -1,0 +1,23 @@
+tm_1pow_n_hash_bin_n_nlt0_easier_version
+/*L={1^n#bin(n): n in N+},
+bin(n) - binary representation of n (with no leading zeros),
+ex. bin(5) = 101, bin(0) = 0
+0) check if there is at least one 1, exactly one #
+1) starting from left, (write * instead of 1, skip next 1), repeat until #
+2) now you know if |1^n| is odd or not, go right and check if last sign is odd or not
+3) go to left, and start 1)
+*/
+0 1
+qS
+      ; 0          ; 1          ; #         ; *         ;
+qS    ; no         ; 1 qS >     ; # qCH >   ; no        ; no
+qCH   ; # qDLZ >   ; 1 qL <     ; no        ; no        ; no
+qDLZ  ; # qDLZ >   ; 1 qL <     ; no        ; no        ; no
+qL    ; 0 qL <     ; 1 qL <     ; # qL <    ; * qL <    ; blank qMARK >
+qMARK ; no         ; * qSKIP >  ; # qEVEN > ; * qMARK > ; no
+qSKIP ; no         ; 1 qMARK >  ; # qODD >  ; * qSKIP > ; no
+qEVEN ; 0 qEVEN >  ; 1 qEVEN >  ; # qEVEN > ; no        ; blank qC0 <
+qODD  ; 0 qODD >   ; 1 qODD >   ; # qODD >  ; no        ; blank qC1 <
+qC0   ; blank qC < ; no         ; no        ; no        ; no
+qC1   ; no         ; blank qC < ; no        ; no        ; no
+qC    ; 0 qL <     ; 1 qL <     ; # qC <    ; * qC <    ; yes
