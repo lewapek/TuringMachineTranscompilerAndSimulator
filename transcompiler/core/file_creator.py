@@ -47,7 +47,7 @@ def create_file(directory, command_line_name, parsed_content, project_directory_
             "#          below import depends on project location and transcompiled code destination\n"
             "#          in case of project or machine movement this file may not work\n"
             "import sys\n"
-            "sys.path.append('" + os.path.relpath(project_directory_path, directory) + "')\n")
+            "sys.path.append('" + project_directory_path + "')\n")
 
     [f.write("# " + d + "\n") for d in description.split("\n")]
 
@@ -88,7 +88,7 @@ def create_file(directory, command_line_name, parsed_content, project_directory_
                indent(1) + "x = input()\n" \
                            "else:\n" + \
                indent(1) + "x = args.x\n" + \
-               indent(1) + "if x == 'BLANK' or x == 'blank':\n" + \
+               indent(1) + "if x == '':\n" + \
                indent(2) + "x = '" + config.blank + "'\n" \
                                                     "\n"
 

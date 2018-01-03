@@ -20,7 +20,7 @@ def parse_command_line():
 
 args = parse_command_line()
 utils.set_logging_level(args.logging_level)
-content_to_parse = utils.read_content_from(args.input_file)
+content_to_parse = utils.read_utf8_content_from(args.input_file)
 
 parsed_content = machine_parser.parse(content_to_parse)
 file_creator.create_file(

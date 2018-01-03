@@ -5,9 +5,10 @@ from transcompiler import config
 
 
 def expected_result_from(string):
-    if string in config.true_signs:
+    lower_case_string = string.lower()
+    if lower_case_string in config.true_signs:
         return accept()
-    elif string in config.false_signs:
+    elif lower_case_string in config.false_signs:
         return reject()
     else:
         raise IncorrectTestCaseError

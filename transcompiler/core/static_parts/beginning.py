@@ -9,6 +9,8 @@ from transcompiler.core.static_parts.exceptions import *
 from transcompiler.core.static_parts.functions import *
 from transcompiler.core.static_parts.tests_parser import parse_test_cases
 
+from transcompiler.utils import utils
+
 max_steps = 10000
 
 command_line_parser = argparse.ArgumentParser()
@@ -17,7 +19,7 @@ command_line_parser.add_argument("-t", "--trace", dest="trace", action="store_tr
 command_line_parser.add_argument("-x", dest="x", default=None, required=False, help="input word")
 command_line_parser.add_argument("-q", "--quiet", dest="quiet_mode", action="store_true", default=None, required=False,
                                  help="enables quiet mode")
-command_line_parser.add_argument("--test", dest="test", default=None, required=False,
+command_line_parser.add_argument("--test", dest="test_cases_file", default=None, required=False,
                                  help="test mode, requires file with test cases")
 command_line_parser.add_argument("-s", "--steps", dest="max_steps", default=None, required=False,
                                  help="Max steps (" + str(max_steps) + ") by default")
@@ -30,23 +32,19 @@ if args.max_steps and int(args.max_steps) > 0:
     max_steps = int(args.max_steps)
 trace = args.trace
 quiet = args.quiet_mode
-test = args.test
+test_cases_file = args.test_cases_file
 
 
 def process_testing():
-    f = codecs.open(test, "r", "utf-8")
-    test_cases = f.read()
-    f.close()
+    test_cases_string = utils.read_utf8_content_from(test_cases_file)
 
-    test_cases = parse_test_cases(test_cases)
+    test_cases = parse_test_cases(test_cases_string)
     length = max(len(t[0]) for t in test_cases) + max(len(accept_string), len(reject_string)) + 5
 
     ok, failed, max_steps_exceeded = 0, 0, 0
     total = len(test_cases)
 
     for single_test_case in test_cases:
-        if single_test_case[0] == "":
-            single_test_case[0] = "BLANK"
         cmd = "python3 " + os.path.realpath(__file__) + " -q -x " + single_test_case[0] + " -s " + str(max_steps)
         process = Popen(cmd.split(), stdout=PIPE)
         process.communicate()
@@ -74,5 +72,5 @@ def process_testing():
     exit(0)
 
 
-if test:
+if test_cases_file:
     process_testing()

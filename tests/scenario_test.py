@@ -13,7 +13,7 @@ class TestDslParsingProcess(unittest.TestCase):
 
     @staticmethod
     def parse_single_machine_dsl(path):
-        content_to_parse = utils.read_content_from(path)
+        content_to_parse = utils.read_utf8_content_from(path)
         return machine_parser.parse(content_to_parse)
 
     @staticmethod

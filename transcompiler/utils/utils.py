@@ -20,7 +20,7 @@ def set_logging_level(level_as_string):
     logging.basicConfig(level=level)
 
 
-def read_content_from(input_file):
+def read_utf8_content_from(input_file):
     descriptor = codecs.open(input_file, "r", "utf-8")
     content = descriptor.read()
     descriptor.close()

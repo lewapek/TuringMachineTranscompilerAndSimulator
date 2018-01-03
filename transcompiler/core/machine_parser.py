@@ -16,8 +16,8 @@ def parse(content):
         description = ""
     content = re.sub(description_regex, "", content)
 
-    content = re.sub(re.compile(r"blank"), config.blank, content)
-    content = re.sub(re.compile(r"BLANK"), config.blank, content)
+    for blank_equivalent in config.blank_equivalents:
+        content = re.sub(re.compile(blank_equivalent), config.blank, content)
 
     logging.debug("Preprocessed content:\n" + content)
 
