@@ -31,6 +31,8 @@ All elements should be placed on single line except from multiline comment and m
 ## Example
 In this next section you will see practical example how to write sample Turing machine, transcompile it to python3 program, run, trace and test.
 
+### Turing machine specification example
+![Example Turing machine](docs/exampleDSL.png "example DSL")
 
 ## Restrictions
 
