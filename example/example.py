@@ -6,6 +6,7 @@
 #          in case of project or machine movement this file may not work
 import sys
 sys.path.append('yourLocalProjectAbsPathShouldBeHere/TuringMachineTranscompilerSimulator')
+sys.path.append('..')
 # Accepts language L={0^n1^n, n-natural (possible 0)}
 # q_0 - looking for '0', when found, writes blank ang looking for '1'), accepts empty tape, when found '#', checking by q_c
 # q_1 - looking for '1' (skipping rest), when not found, reject

@@ -11,7 +11,7 @@ Tape alphabet is alphabet consisting of characters which can be written on tape 
 
 
 ## Usage
-1. Create deterministic Turing machine in the following form:
+### Create deterministic Turing machine in the following form:
 
 ```
 machineName  
@@ -27,12 +27,82 @@ Each row consists of 3-element tuple with character, state name and transition w
 
 All elements should be placed on single line except from multiline comment and machine description.
 
+### Compile it to python3 program
+
+Compilation to python3 is done using *transcompiler.py* program which is python3 program itself.
+```
+usage: transcompiler.py [-h] -f INPUT_FILE [-d OUTPUT_DIRECTORY]
+                        [-n OUTPUT_NAME] [-l LOGGING_LEVEL]
+
+Turing machine simulator creator
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -f INPUT_FILE, --file INPUT_FILE
+                        file containing machine specification
+  -d OUTPUT_DIRECTORY, --dir OUTPUT_DIRECTORY
+                        path to store output file inside
+  -n OUTPUT_NAME, --name OUTPUT_NAME
+                        output filename, .py extension will be added
+                        automatically if needed
+  -l LOGGING_LEVEL, --log LOGGING_LEVEL
+                        logging level
+
+```
+
+### Run transcompiled code
+
+Go to directory with trancompiled python3 code and run it. Possible options:
+```
+usage: example.py [-h] [-t] [-x X] [-q] [--test TEST_CASES_FILE]
+                  [-s MAX_STEPS]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -t, --trace           enables trace mode
+  -x X                  input word
+  -q, --quiet           enables quiet mode
+  --test TEST_CASES_FILE
+                        test mode, requires file with test cases
+  -s MAX_STEPS, --steps MAX_STEPS
+                        Max steps (10000) by default
+
+```
+
+### Test your machine
+
+In order to test your machine you need to provide file with test cases - each test case in separate line. Single test case consist of input word and marker informing whether machine should accept it. Possible markers are listed in config file ([config file](trancompiler/config.py)).
+Testing is done using transcompiled python3 code using *--test* argument with test cases file. 
+A concrete example is presented in the next section.
 
 ## Example
 In this next section you will see practical example how to write sample Turing machine, transcompile it to python3 program, run, trace and test.
 
 ### Turing machine specification example
+
+BLANK and blank are equivalent to ▯ symbol. If you like you can write ▯ directly.
+
 ![Example Turing machine](docs/exampleDSL.png "example DSL")
+
+### Compiling machine to python3 program
+
+// TODO
+
+### Running machine on sample inputs
+
+// TODO + write sth about max steps param
+
+### Tracing every transition
+
+// TODO
+
+### Writing tests and testing
+
+// TODO
+
+## Already created machines
+
+Already created machines are located in [machines directory](machines/). You can provide your machine specification there.
 
 ## Restrictions
 
