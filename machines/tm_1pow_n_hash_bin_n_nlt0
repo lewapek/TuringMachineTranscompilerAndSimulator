@@ -1,0 +1,30 @@
+/*
+L={1^n#bin(n): n in N+},
+bin(n) - binary representation of n (with no leading zeros),
+ex. bin(5) = 101, bin(0) = 0
+starting with qSTART, checking minimal requirements (qCH - check hash, qSH - single hash [minimum])
+then go left with qL, go next to first # with qRH, delete leading zeros with qDLZ
+if there is nothing else, check with qCHECK
+else go to right with qR
+start qBIN - divide bin(n) / 2 or sub bin(n) - 1 (qLD -> qDIVS,qDIV1; qLS -> qSUB)
+qDIVS - writes * instead of 1
+qDIV1 - writes 1
+then start qRH, qDLZ, ...
+*/
+0 1
+qSTART
+       ; 0           ; 1           ; #           ; *            ;
+qSTART ; no          ; 1 qCH >     ; no          ; no           ; no
+qCH    ; no          ; 1 qCH >     ; # qSH >     ; no           ; no
+qSH    ; 0 qL <      ; 1 qL <      ; no          ; no           ; no
+qL     ; 0 qL <      ; 1 qL <      ; # qL <      ; * qL <       ; blank qRH >
+qRH    ; 0 qRH >     ; 1 qRH >     ; # qDLZ >    ; * qRH >      ; no
+qDLZ   ; # qDLZ >    ; 1 qR >      ; # qDLZ >    ; no           ; blank qCHECK <
+qCHECK ; no          ; no          ; # qCHECK <  ; * qCHECK <   ; yes
+qR     ; 0 qR >      ; 1 qR >      ; # qR >      ; * qR >       ; blank qBIN <
+qBIN   ; blank qLD < ; 0 qLS <     ; no          ; no           ; no
+qLS    ; 0 qLS <     ; 1 qLS <     ; # qLS <     ; * qLS <      ; blank qSUB >
+qLD    ; 0 qLD <     ; 1 qLD <     ; # qLD <     ; * qLD <      ; blank qDIVS >
+qSUB   ; no          ; * qL <      ; no          ; * qSUB >     ; no
+qDIVS  ; no          ; * qDIV1 >   ; # qL <      ; * qDIVS >    ; no
+qDIV1  ; no          ; 1 qDIVS >   ; no          ; * qDIV1 >    ; no

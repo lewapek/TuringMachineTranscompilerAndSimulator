@@ -1,0 +1,14 @@
+/*
+L={x#y | x is subsequence of y, y consist of 0 or 1}
+*/
+0 1 #
+qSH
+    ; 0           ; 1           ; #       ;
+qSH ; 0 qSH >     ; 1 qSH >     ; # qCH > ; no
+qCH ; 0 qB <      ; 1 qB <      ; no      ; blank qB <
+qS  ; blank qC0 > ; blank qC1 > ; yes     ; no
+qC0 ; 0 qC0 >     ; 1 qC0 >     ; # qD0 > ; no
+qC1 ; 0 qC1 >     ; 1 qC1 >     ; # qD1 > ; no
+qD0 ; # qB <      ; # qD0 >     ; # qD0 > ; no
+qD1 ; # qD1 >     ; # qB <      ; # qD1 > ; no
+qB  ; 0 qB <      ; 1 qB <      ; # qB <  ; blank qS >

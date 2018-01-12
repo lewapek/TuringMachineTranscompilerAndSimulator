@@ -1,0 +1,7 @@
+/* decrementing binary */
+0 1
+qS
+     ; 0        ; 1        ;
+qS   ; 0 qS >   ; 1 qS >   ; blank qi <
+qi   ; 1 qi <   ; 0 qEND > ; yes
+qEND ; 0 qEND > ; 1 qEND > ; yes
