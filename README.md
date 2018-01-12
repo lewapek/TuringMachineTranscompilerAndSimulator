@@ -128,9 +128,7 @@ You can also trace your machine execution with *-t* option
 
 ### Writing tests and testing
 
-One of the most significant feature of this project is ability to easily test your machine. To do so you need to write test cases. Example test cases are shown below (they are also located [here](example/example.test)).  
-![Run example](docs/testCases.png)  
-2nd test case denotes than empty input (blank) should be accepted.
+One of the most significant feature of this project is ability to easily test your machine. To do so you need to write test cases. Example test cases are also located [here](example/example.test). 2nd test case denotes than empty input (blank) should be accepted.
 
 I order to run tests, execute:
 ```python3 example/example.py --test example/example.test```
