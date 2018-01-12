@@ -15,17 +15,17 @@ More detailed example is presented in *[Example](#example)* section.
 
 ### Simple commands
 
-Transcompile to python3 program  
+1. Transcompile to python3 program  
 ```python3 transcompiler.py -f example/example -d example```  
-Run (trace)  
+2. Run (trace)  
 ```python3 example/example.py -t```  
-Test  
+3. Test  
 ```python3 example/example.py --test example/example.test```
 
 ### One-liners
-Run (trace)  
+1. Run (trace)  
 ```python3 transcompiler.py -f example/example -d example && python3 example/example.py -t```  
-Test  
+2. Test  
 ```python3 transcompiler.py -f example/example -d example && python3 example/example.py --test example/example.test```
 
 ## Usage
@@ -123,13 +123,13 @@ You can also set maximum number of steps machine can do with *-s* option. Note t
 ### Tracing every transition
 
 You can also trace your machine execution with *-t* option  
-```python3 example/example.py -x 0011 -t```
+```python3 example/example.py -x 0011 -t```  
 ![Run example](docs/traceExampleMachine.png)
 
 ### Writing tests and testing
 
 One of the most significant feature of this project is ability to easily test your machine. To do so you need to write test cases. Example test cases are shown below (they are also located [here](example/example.test)).
-![Run example](docs/testCases.png)
+![Run example](docs/testCases.png)  
 2nd test case denotes than empty input (blank) should be accepted.
 
 I order to run tests, execute:
