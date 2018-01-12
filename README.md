@@ -9,6 +9,24 @@ Machines contain single tape, infinite at both sides (empty tape is represented 
 Working alphabet is alphabet for input words.  
 Tape alphabet is alphabet consisting of characters which can be written on tape (working alphabet + optional additional characters).
 
+## Quick start
+
+More detailed example is presented in *[Example](#example)* section.
+
+### Simple commands
+
+Transcompile to python3 program  
+```python3 transcompiler.py -f example/example -d example```  
+Run (trace)  
+```python3 example/example.py -t```  
+Test  
+```python3 example/example.py --test example/example.test```
+
+### One-liners
+Run (trace)  
+```python3 transcompiler.py -f example/example -d example && python3 example/example.py -t```  
+Test  
+```python3 transcompiler.py -f example/example -d example && python3 example/example.py --test example/example.test```
 
 ## Usage
 ### Create deterministic Turing machine in the following form:
@@ -47,7 +65,6 @@ optional arguments:
                         automatically if needed
   -l LOGGING_LEVEL, --log LOGGING_LEVEL
                         logging level
-
 ```
 
 ### Run transcompiled code
@@ -66,7 +83,6 @@ optional arguments:
                         test mode, requires file with test cases
   -s MAX_STEPS, --steps MAX_STEPS
                         Max steps (10000) by default
-
 ```
 
 ### Test your machine
@@ -95,16 +111,31 @@ If no other options are provided, *example.py* file should appear in example dir
 
 ### Running machine on sample inputs
 
-Assuming output file location is example/example.py (if you used *-d example* in previous step, otherwise location is *machines/example.py*)
-// TODO + write sth about max steps param
+Assuming output file location is example/example.py (if you used *-d example* in previous step, otherwise location is *machines/example.py*) you can now run your machine by typing:  
+```python3 example/example.py -x 0011```  
+The *-x input* parameter denotes input word.  
+After that you should see the following output:  
+![Run example](docs/runExampleMachine.png)
+
+You can also set maximum number of steps machine can do with *-s* option. Note that *0011* input word is now rejected.  
+![Run example](docs/runRejectionMaxSteps.png)
 
 ### Tracing every transition
 
-// TODO
+You can also trace your machine execution with *-t* option  
+```python3 example/example.py -x 0011 -t```
+![Run example](docs/traceExampleMachine.png)
 
 ### Writing tests and testing
 
-// TODO
+One of the most significant feature of this project is ability to easily test your machine. To do so you need to write test cases. Example test cases are shown below (they are also located [here](example/example.test)).
+![Run example](docs/testCases.png)
+2nd test case denotes than empty input (blank) should be accepted.
+
+I order to run tests, execute:
+```python3 example/example.py --test example/example.test```
+
+![Run example](docs/testExampleMachine.png)
 
 ## Already created machines
 

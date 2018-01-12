@@ -1,3 +1,4 @@
 .idea/
 .pyc
+example/*.py
 machines/*.py
