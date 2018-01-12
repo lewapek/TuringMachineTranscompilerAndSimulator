@@ -71,8 +71,8 @@ optional arguments:
 
 ### Test your machine
 
-In order to test your machine you need to provide file with test cases - each test case in separate line. Single test case consist of input word and marker informing whether machine should accept it. Possible markers are listed in config file ([config file](trancompiler/config.py)).
-Testing is done using transcompiled python3 code using *--test* argument with test cases file. 
+In order to test your machine you need to provide file with test cases - each test case in separate line. Single test case consists of input word and marker informing whether machine should accept it. Possible markers are listed in config file ([config file](transcompiler/config.py)).
+Testing is done using transcompiled python3 code using *--test* argument with test cases file.  
 A concrete example is presented in the next section.
 
 ## Example
@@ -84,12 +84,18 @@ BLANK and blank are equivalent to ▯ symbol. If you like you can write ▯ dire
 
 ![Example Turing machine](docs/exampleDSL.png "example DSL")
 
+Example machine specification is located [here](example/example).
+
 ### Compiling machine to python3 program
 
-// TODO
+Go to project location. Execute:  
+```python3 transcompiler.py -f example/example -d example```
+
+If no other options are provided, *example.py* file should appear in example directory. Without *-d* parameter, output file *example.py* would appear in machines directory.
 
 ### Running machine on sample inputs
 
+Assuming output file location is example/example.py (if you used *-d example* in previous step, otherwise location is *machines/example.py*)
 // TODO + write sth about max steps param
 
 ### Tracing every transition
@@ -103,6 +109,11 @@ BLANK and blank are equivalent to ▯ symbol. If you like you can write ▯ dire
 ## Already created machines
 
 Already created machines are located in [machines directory](machines/). You can provide your machine specification there.
+
+## Good practises
+
+There is a good practice to name the file with Turing machine specification as *TMName* and file with test cases as *TMName.test*. Then, when executing transcompiler with default parameters, output file will be named *TMName.py*.  
+If *TMName* and *TMName.test* will be located in machines directory, then *TMName.py* will be created there too (machines is the default output directory).
 
 ## Restrictions
 

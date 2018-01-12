@@ -1,5 +1,4 @@
-tm inc bin
-/*increments binary*/
+/* increment binary */
 0 1
 qS
      ; 0        ; 1        ;

@@ -1,4 +1,3 @@
-tm palindrome
 /* L={x | x-palindrome} */
 0 1
 qS

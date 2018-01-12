@@ -1,5 +1,5 @@
-tm_bin_n_hash_0pow_n_nle0
-/*L={bin(n)#0^n: n in N0},
+/*
+L={bin(n)#0^n: n in N0},
 bin(n) - binary representation of n, ex. bin(5) = 101, bin(0) = 0
 qDLZ - delete leading zeros
 qLHASH - going to the sign on the left to '#'

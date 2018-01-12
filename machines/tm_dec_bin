@@ -1,5 +1,4 @@
-tm dec bin
-/*decrementing binary*/
+/* decrementing binary */
 0 1
 qS
      ; 0        ; 1        ;

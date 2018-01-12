@@ -1,5 +1,6 @@
-tm_xhashy_x_subsequence_y
-/* L={x#y | x is subsequence of y, y consist of 0 or 1} */
+/*
+L={x#y | x is subsequence of y, y consist of 0 or 1}
+*/
 0 1 #
 qSH
     ; 0           ; 1           ; #       ;

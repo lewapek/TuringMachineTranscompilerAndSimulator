@@ -8,7 +8,7 @@ from transcompiler.utils import utils
 
 
 class TestDslParsingProcess(unittest.TestCase):
-    example_machine_path = "example/example.dsl"
+    example_machine_path = "example/example"
     created_machines_directory = "machines/"
 
     @staticmethod
@@ -22,11 +22,11 @@ class TestDslParsingProcess(unittest.TestCase):
             lambda file: join(directory, file),
             os.listdir(directory)
         )
-        non_test_files = filter(
-            lambda path: isfile(path) and not path.endswith(".test"),
+        non_test_and_pythonfiles = filter(
+            lambda path: isfile(path) and not path.endswith(".test") and not path.endswith(".py"),
             paths
         )
-        return non_test_files
+        return non_test_and_pythonfiles
 
     def test_parse_example_machine_without_exception(self):
         self.parse_single_machine_dsl("../" + self.example_machine_path)

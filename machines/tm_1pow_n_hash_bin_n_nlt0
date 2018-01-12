@@ -1,5 +1,5 @@
-tm_1pow_n_hash_bin_n_nlt0
-/*L={1^n#bin(n): n in N+},
+/*
+L={1^n#bin(n): n in N+},
 bin(n) - binary representation of n (with no leading zeros),
 ex. bin(5) = 101, bin(0) = 0
 starting with qSTART, checking minimal requirements (qCH - check hash, qSH - single hash [minimum])

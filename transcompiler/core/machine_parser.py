@@ -23,18 +23,16 @@ def parse(content):
 
     lines = content.splitlines()
     [lines.remove(i) for i in lines if i == ""]
-    name = lines[0].replace(" ", "_")
-    tape_alphabet = lines[1].split()
-    initial_state = lines[2].replace(" ", "")
-    working_alphabet = list(map(lambda character: character.strip(), lines[3].split(";")))[1:-1]
+    tape_alphabet = lines[0].split()
+    initial_state = lines[1].replace(" ", "")
+    working_alphabet = list(map(lambda character: character.strip(), lines[2].split(";")))[1:-1]
 
-    logging.debug("Name: " + str(name))
     logging.debug("Tape alphabet: " + str(tape_alphabet))
     logging.debug("Initial state: " + str(initial_state))
     logging.debug("Working alphabet: " + str(working_alphabet))
 
     states_and_transitions = []
-    for line in lines[4:]:
+    for line in lines[3:]:
         split_line = line.split(";")
         state = split_line[0].replace(" ", "")
         transitions = []
@@ -48,7 +46,7 @@ def parse(content):
     working_alphabet += [config.blank]
     check_states(initial_state, states_and_transitions, working_alphabet)
 
-    return name, description, tape_alphabet, working_alphabet, initial_state, states_and_transitions
+    return description, tape_alphabet, working_alphabet, initial_state, states_and_transitions
 
 
 def check_blank_in_alphabet(alphabet):

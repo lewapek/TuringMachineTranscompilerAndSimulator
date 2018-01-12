@@ -1,5 +1,4 @@
-tm_word_length_eq_3pow_n
-/*L={x: |x| = 3^n, n in N0}*/
+/* L={x: |x| = 3^n, n in N0} */
 1
 qS1
     ; 1       ; #       ;

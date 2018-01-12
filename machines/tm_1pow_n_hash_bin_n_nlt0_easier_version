@@ -1,5 +1,5 @@
-tm_1pow_n_hash_bin_n_nlt0_easier_version
-/*L={1^n#bin(n): n in N+},
+/*
+L={1^n#bin(n): n in N+},
 bin(n) - binary representation of n (with no leading zeros),
 ex. bin(5) = 101, bin(0) = 0
 0) check if there is at least one 1, exactly one #

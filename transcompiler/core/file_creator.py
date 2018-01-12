@@ -4,7 +4,6 @@ import datetime
 import os
 
 from transcompiler import config
-from transcompiler.utils import utils
 
 indentation = "    "
 
@@ -13,29 +12,22 @@ def indent(times=1):
     return times * indentation
 
 
-def choose_machine_name_from(cmd_name, parsed_name):
-    filename = parsed_name if cmd_name is None else cmd_name
-    return utils.ensure_python_extension_in(filename)
-
-
 tape_left_extension = indent(2) + "tape.insert(0, '" + config.blank + "')\n" + \
                       indent(2) + "actual_state_and_pos[1] += 1\n"
 tape_right_extension = indent(2) + "tape.append('" + config.blank + "')\n"
 
 
-def create_file(directory, command_line_name, parsed_content, project_directory_path):
+def create_file(directory, filename, parsed_content, project_directory_path):
     beginning_file = os.path.join(
         os.path.relpath(project_directory_path, os.getcwd()),
         "transcompiler/core/static_parts/beginning.py"
     )
-    parsed_name = parsed_content[0]
-    description = parsed_content[1]
-    tape_alphabet = parsed_content[2]
-    working_alphabet = parsed_content[3]
-    initial_state = parsed_content[4]
-    states_and_transitions = parsed_content[5]
+    description = parsed_content[0]
+    tape_alphabet = parsed_content[1]
+    working_alphabet = parsed_content[2]
+    initial_state = parsed_content[3]
+    states_and_transitions = parsed_content[4]
 
-    filename = choose_machine_name_from(command_line_name, parsed_name)
     created_file_path = directory + "/" + filename
 
     f = codecs.open(created_file_path, "w", "utf-8")
